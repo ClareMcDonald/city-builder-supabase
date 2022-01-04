@@ -21,7 +21,58 @@
     </header>    
     <button id="logout">Logout</button>
     <main>
-        <h1>You are logged in!</h1>
+        <section>
+            <h1>Welcome to beautiful <span id="city-name"></span>!</h1>
+        </section>
+
+        <section id="images">
+            <img id="waterfront-img">
+            <img id="skyline-img">
+            <img id="castle-img">
+        </section>
+
+        <section>
+            <h2>Slogans</h2>
+            <div id="slogan-list">
+
+            </div>
+        </section>
+
+        <section>
+            <form>
+                <input name="slogan-input">
+                <button>Add Slogan</button>
+            </form>
+
+            <form>
+                <input name="slogan-input">
+                <button>Change Name</button>
+            </form>
+
+            <label for="waterfront-dropdown">Waterfront
+                <select name="waterfront" id="waterfront">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+
+            <label for="skyline-dropdown">Skyline
+                <select name="skyline" id="skyline">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+
+            <label for="castle-dropdown">Castle
+                <select name="castle" id="castle">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+        </section>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
