@@ -1,4 +1,4 @@
-import { checkAuth, logout, fetchCity, createDefaultCity, updateName, updateWaterfront, updateSkyline, updateCastle } from '../fetch-utils.js';
+import { checkAuth, logout, fetchCity, createDefaultCity, updateName, updateSlogans, updateWaterfront, updateSkyline, updateCastle } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -54,6 +54,22 @@ nameForm.addEventListener('submit', async(e) => {
     displayCity(newCityName);
 });
 
+sloganForm.addEventListener('submit', async(e) => {
+    e.preventDefault();
+
+    const data = new FormData(sloganForm);
+
+    const slogan = data.get('slogan-input');
+
+    const city = await fetchCity();
+
+    city.slogans.push(slogan);
+
+    const newSlogans = await updateSlogans(city.slogans);
+    
+    displayCity(newSlogans);
+});
+
 waterfrontDropdown.addEventListener('change', async() => {
     const selectedWaterfront = waterfrontDropdown.value;
 
@@ -81,4 +97,11 @@ function displayCity(city) {
     waterfrontImgEl.src = `../assets/waterfront-${city.waterfront_id}.png`;
     skylineImgEl.src = `../assets/skyline-${city.skyline_id}.png`;
     castleImgEl.src = `../assets/castle-${city.castle_id}.png`;
+
+    for (let slogan of city.slogans) {
+        const sloganEl = document.createElement('p');
+        sloganEl.textContent = slogan;
+
+        slogansEl.append(sloganEl);
+    }
 }

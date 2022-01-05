@@ -39,6 +39,14 @@ export async function updateName(newName) {
     return checkError(response);
 }
 
+export async function updateSlogans(newSlogans) {
+    const response = await client
+        .from('cities')
+        .update({ slogans: newSlogans })
+        .single();
+    return checkError(response);
+}
+
 export async function updateWaterfront(newWaterfront) {
     const response = await client
         .from('cities')
