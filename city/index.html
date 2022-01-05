@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="gutter-right logo">
+            <img src="../assets/big-logo.png" />
+        </div>
+    </header>    
+    <button id="logout">Logout</button>
+    <main>
+        <section>
+            <h1>Welcome to beautiful <span id="city-name"></span>!</h1>
+        </section>
+
+        <section id="images">
+            <img id="waterfront-img"/>
+            <img id="skyline-img"/>
+            <img id="castle-img"/>
+        </section>
+
+        <section>
+            <h2>Slogans</h2>
+            <div id="slogan-list">
+
+            </div>
+        </section>
+
+        <section>
+            <form id="slogan-form">
+                <input name="slogan-input">
+                <button>Add Slogan</button>
+            </form>
+
+            <form id="name-form">
+                <input name="name-input">
+                <button>Change Name</button>
+            </form>
+
+            <label for="waterfront-dropdown">Waterfront
+                <select name="waterfront" id="waterfront">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+
+            <label for="skyline-dropdown">Skyline
+                <select name="skyline" id="skyline">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+
+            <label for="castle-dropdown">Castle
+                <select name="castle" id="castle">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+        </section>
+    </main>
+    <footer>
+        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+    </footer>
+    <script type="module" src="./city.js"></script>
+</body>
+
+</html>
