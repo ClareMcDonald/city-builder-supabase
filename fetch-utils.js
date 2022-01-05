@@ -39,6 +39,26 @@ export async function updateWaterfront(newWaterfront) {
     return checkError(response);
 }
 
+export async function updateSkyline(newSkyline) {
+    const response = await client
+        .from('cities')
+        .update({ skyline_id: newSkyline })
+        .match({ user_id: client.auth.user().id })
+        .single();
+    
+    return checkError(response);
+}
+
+export async function updateCastle(newCastle) {
+    const response = await client
+        .from('cities')
+        .update({ castle_id: newCastle })
+        .match({ user_id: client.auth.user().id })
+        .single();
+    
+    return checkError(response);
+}
+
 export async function getUser() {
     return client.auth.session();
 }

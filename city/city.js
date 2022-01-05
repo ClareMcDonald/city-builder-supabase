@@ -1,4 +1,4 @@
-import { checkAuth, logout, fetchCity, createDefaultCity, updateWaterfront } from '../fetch-utils.js';
+import { checkAuth, logout, fetchCity, createDefaultCity, updateWaterfront, updateSkyline, updateCastle } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -12,7 +12,7 @@ const sloganForm = document.querySelector('#slogan-form');
 const nameForm = document.querySelector('#name-form');
 const waterfrontDropdown = document.querySelector('#waterfront');
 const skylineDropdown = document.querySelector('#skyline');
-const castleDropdown = document.querySelector('castle');
+const castleDropdown = document.querySelector('#castle');
 
 /*console.log(
     cityNameEl,
@@ -49,11 +49,23 @@ waterfrontDropdown.addEventListener('change', async() => {
     displayCity(updatedWaterfront);
 });
 
+skylineDropdown.addEventListener('change', async() => {
+    const selectedSkyline = skylineDropdown.value;
 
+    const updatedSkyline = await updateSkyline(selectedSkyline);
+    displayCity(updatedSkyline);
+});
+
+castleDropdown.addEventListener('change', async() => {
+    const selectedCastle = castleDropdown.value;
+
+    const updatedCastle = await updateCastle(selectedCastle);
+    displayCity(updatedCastle);
+});
 
 function displayCity(city) {
-    console.log(city.waterfront_id);
-    waterfrontImgEl.style.backgroundImage = `url('../assets/waterfront-${city.waterfront_id}.png')`;
-    skylineImgEl.style.backgroundImage = `url('../assets/skyline-${city.skyline_id}.png')`;
-    castleImgEl.style.backgroundImage = `url('../assets/castle-${city.castle_id}.png')`;
+    console.log(city);
+    waterfrontImgEl.src = `../assets/waterfront-${city.waterfront_id}.png`;
+    skylineImgEl.src = `../assets/skyline-${city.skyline_id}.png`;
+    castleImgEl.src = `../assets/castle-${city.castle_id}.png`;
 }
