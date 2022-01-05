@@ -4,6 +4,31 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsI
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+export async function fetchCity() {
+    const response = await client
+        .from('cities')
+        .select()
+        .match({ user_id: client.auth.user().id, })
+        .single;
+    
+    return checkError(response); 
+}
+
+export async function createDefaultCity() {
+    const response = await client
+        .from('cities')
+        .insert([{
+            name: 'Eugene',
+            waterfront_id: 1,
+            skyline_id: 1,
+            castle_id: 1,
+            slogans: []
+        }])
+        .single;
+    
+    return checkError(response);
+}
+
 export async function getUser() {
     return client.auth.session();
 }
@@ -42,3 +67,4 @@ export async function logout() {
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
+
