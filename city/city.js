@@ -1,4 +1,4 @@
-import { checkAuth, logout, fetchCity, createDefaultCity, updateWaterfront, updateSkyline, updateCastle } from '../fetch-utils.js';
+import { checkAuth, logout, fetchCity, createDefaultCity, updateName, updateWaterfront, updateSkyline, updateCastle } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -42,6 +42,18 @@ window.addEventListener('load', async() => {
     }
 });
 
+nameForm.addEventListener('submit', async(e) => {
+    e.preventDefault();
+
+    const data = new FormData(nameForm);
+
+    const name = data.get('name-input');
+
+    const newCityName = await updateName(name);
+    
+    displayCity(newCityName);
+});
+
 waterfrontDropdown.addEventListener('change', async() => {
     const selectedWaterfront = waterfrontDropdown.value;
 
@@ -64,7 +76,8 @@ castleDropdown.addEventListener('change', async() => {
 });
 
 function displayCity(city) {
-    console.log(city);
+    cityNameEl.textContent = city.name;
+
     waterfrontImgEl.src = `../assets/waterfront-${city.waterfront_id}.png`;
     skylineImgEl.src = `../assets/skyline-${city.skyline_id}.png`;
     castleImgEl.src = `../assets/castle-${city.castle_id}.png`;

@@ -29,6 +29,16 @@ export async function createDefaultCity() {
     return checkError(response);
 }
 
+export async function updateName(newName) {
+    const response = await client
+        .from('cities')
+        .update({ name: newName })
+        .match({ user_id: client.auth.user().id })
+        .single();
+    
+    return checkError(response);
+}
+
 export async function updateWaterfront(newWaterfront) {
     const response = await client
         .from('cities')
