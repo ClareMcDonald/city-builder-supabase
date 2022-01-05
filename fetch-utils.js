@@ -9,7 +9,7 @@ export async function fetchCity() {
         .from('cities')
         .select()
         .match({ user_id: client.auth.user().id, })
-        .single;
+        .single();
     
     return checkError(response); 
 }
@@ -24,7 +24,17 @@ export async function createDefaultCity() {
             castle_id: 1,
             slogans: []
         }])
-        .single;
+        .single();
+    
+    return checkError(response);
+}
+
+export async function updateWaterfront(newWaterfront) {
+    const response = await client
+        .from('cities')
+        .update({ waterfront_id: newWaterfront })
+        .match({ user_id: client.auth.user().id })
+        .single();
     
     return checkError(response);
 }
